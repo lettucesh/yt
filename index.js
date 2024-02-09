@@ -57,21 +57,19 @@ const fixFilename = (filename) => {
 
 const downloadAudio = (video) => {
     const videoTitle = fixFilename(video.title);
-    const filePath = `C:/Users/sop/Documents/musicas/${videoTitle}.mp3`;
+    const filePath = `C:/Users/sop/Documents/spotify/${videoTitle}.mp3`;
 
     if (fs.existsSync(filePath)) {
         console.log(`${videoTitle} ja esta baixado`);
         return;
     }
 
-    const audioStream = ytdl(`https://www.youtube.com/watch?v=${video.videoId}`, { quality: 'highestaudio' });
+    const audioStream = ytdl(`https://www.youtube.com/watch?v=${video.videoId}`, { filter: 'audioonly', quality: 'highestaudio' });
 
-    console.log(`arquivos a ser baixado: ${video.title}`);
     audioStream.on('error', (err) => console.error('erro ao baixar: ', err));
     audioStream.on('end', () => console.log(`${video.title} baixado!`));
 
-    const fileStream = fs.createWriteStream(`C:/Users/sop/Documents/musicas/${videoTitle}.mp3`);
-    audioStream.pipe(fileStream);
+    audioStream.pipe(fs.createWriteStream(filePath));
 }
 
 (async () => {
