@@ -1,3 +1,5 @@
+.env
 /audios
 /node_modules
-
+/playlists
+deleteCorruptedSongs.js
