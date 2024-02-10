@@ -57,7 +57,7 @@ const fixFilename = (filename) => {
 
 const downloadAudio = (video) => {
     const videoTitle = fixFilename(video.title);
-    const filePath = `C:/Users/sop/Documents/spotify/${videoTitle}.mp3`;
+    const filePath = `./songs/${videoTitle}.mp3`;
 
     if (fs.existsSync(filePath)) {
         console.log(`${videoTitle} ja esta baixado`);
