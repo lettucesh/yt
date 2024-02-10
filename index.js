@@ -97,6 +97,6 @@ const downloadAudio = (video) => {
         const ytTitle = await getYtTitle();
         downloadAudio({ title: ytTitle.title, videoId: ytTitle.videoId });
 
-    } else console.log('url invalida');
+    } else console.log('url invalida'); //
 
 })();
